@@ -2,6 +2,7 @@ package com.unesc.compiler.controller;
 
 import com.unesc.compiler.main.GlobalStage;
 import com.unesc.compiler.util.CompilerFile;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -34,54 +35,93 @@ public class MainController implements Initializable {
     private MenuItem miDocumentation;
     @FXML
     private MenuItem miAbout;
-    
+
     @FXML
     private TextArea textArea;
+    private File file;
 
+    /**
+     * Método de inicialização da classe controller.
+     *
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        file = null;
     }
 
+    /**
+     * Método de evento para iniciar um novo arquivo.
+     */
     @FXML
     private void actionMiNewFile() {
-        System.out.println("teste");
+        file = null;
+        textArea.setText("");
     }
 
+    /**
+     * Método de evento para abrir um novo arquivo.
+     */
     @FXML
     private void actionMiOpenFile() {
-        System.out.println("teste");
+        File temp = new CompilerFile().openGetFile(GlobalStage.getStage());
+        if (temp != null) {
+            String text = new CompilerFile().open(temp);
+            if (text != null) {
+                textArea.setText("" + text);
+                file = temp;
+            }
+            text = null;
+        }
+        temp = null;
     }
 
+    /**
+     * Método para salvar o arquivo corrente.
+     */
     @FXML
     private void actionMiSalveFile() {
-        System.out.println("teste");
+        if (file != null) {
+            new CompilerFile().save(file, textArea.getText());
+        } else {
+            actionMiSaveAsFile();
+        }
     }
 
     @FXML
     private void actionMiSaveAsFile() {
-        new CompilerFile().saveFile(GlobalStage.getStage());
+        File temp = new CompilerFile().saveAs(GlobalStage.getStage(), textArea.getText());
+        if (temp != null) {
+            file = temp;
+        }
+        temp = null;
     }
 
-    @FXML
-    private void actionMCompiler() {
-        System.out.println("compilou");
-    }
-
+    /**
+     * Ação para o item de menu para sair.
+     */
     @FXML
     private void actionMiExit() {
-        System.out.println("teste");
         System.exit(-1);
+    }
+
+    /**
+     * Ação para o menu de compilar.
+     */
+    @FXML
+    private void actionMCompiler() {
+        System.out.println("Em construção.");
     }
 
     @FXML
     private void actionMiDocumentation() {
-        System.out.println("teste");
+        System.out.println("Em construção.");
     }
 
     @FXML
     private void actionMiAbout() {
-        System.out.println("teste");
+        System.out.println("");
     }
 
 }
