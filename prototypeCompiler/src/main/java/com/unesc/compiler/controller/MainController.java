@@ -1,23 +1,17 @@
 package com.unesc.compiler.controller;
 
-import com.unesc.compiler.object.Code;
-import com.unesc.compiler.util.Util;
-import java.io.IOException;
+import com.unesc.compiler.main.GlobalStage;
+import com.unesc.compiler.util.CompilerFile;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TextArea;
 
 /**
- * Controle da janela principal
+ * Controle da janela principal.
  *
  * @author Mauricio Generoso
  * @since 04/09/2017
@@ -40,13 +34,13 @@ public class MainController implements Initializable {
     private MenuItem miDocumentation;
     @FXML
     private MenuItem miAbout;
-
-    // Objetos
-    private Code code;
+    
+    @FXML
+    private TextArea textArea;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
     }
 
     @FXML
@@ -66,7 +60,7 @@ public class MainController implements Initializable {
 
     @FXML
     private void actionMiSaveAsFile() {
-        new Util().showAlertAndWait(Alert.AlertType.INFORMATION, "teste", "teste", "teste");
+        new CompilerFile().saveFile(GlobalStage.getStage());
     }
 
     @FXML

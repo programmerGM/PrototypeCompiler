@@ -63,7 +63,7 @@
          <center>
             <AnchorPane BorderPane.alignment="CENTER">
                <children>
-                  <TextArea layoutX="6.0" layoutY="6.0" prefHeight="481.0" prefWidth="1095.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0" />
+                  <TextArea fx:id="textArea" layoutX="6.0" layoutY="6.0" prefHeight="481.0" prefWidth="1095.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0" />
                </children>
             </AnchorPane>
          </center>

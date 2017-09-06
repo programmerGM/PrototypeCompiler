@@ -1,10 +1,11 @@
 package com.unesc.compiler.main;
 
+import com.unesc.compiler.util.Util;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 /**
@@ -17,16 +18,23 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Main.fxml"));
+        GlobalStage.getInstance(primaryStage);
+        initLayout();
+    }
 
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
-
-        primaryStage.setTitle("Prototype Compiler");
-        primaryStage.setScene(scene);
-        
-        //primaryStage.getIcons().add(new Util().getIcon());
-        primaryStage.show();
+    /**
+     * Método de inicialização do layout.
+     */
+    private void initLayout() {
+        try {
+            GlobalStage.loadNewStage((Parent) FXMLLoader.load(getClass().getResource("/fxml/Main.fxml")));
+            //GlobalStage.getStage().getIcons().add(new Util().getIcon());
+        } catch (Exception ex) {
+            Util.showAlertAndWait(Alert.AlertType.ERROR, "ERRO",
+                    "Erro na abertura da janela", "Ocorreu um erro na abertura"
+                    + "da janela.\nO programa será finalizado.");
+            System.exit(0);
+        }
     }
 
     /**
