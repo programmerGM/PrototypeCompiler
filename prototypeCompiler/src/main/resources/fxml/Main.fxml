@@ -12,6 +12,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
@@ -81,21 +82,39 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Geral">
                   <items>
-                    <MenuItem fx:id="miNewFile" mnemonicParsing="false" onAction="#actionMiNewFile" text="Novo" />
-                        <MenuItem fx:id="miOpenFile" mnemonicParsing="false" onAction="#actionMiOpenFile" text="Abrir" />
-                        <MenuItem fx:id="miSalveFile" mnemonicParsing="false" onAction="#actionMiSalveFile" text="Salvar" />
+                    <MenuItem fx:id="miNewFile" mnemonicParsing="false" onAction="#actionMiNewFile" text="Novo">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="N" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <MenuItem fx:id="miOpenFile" mnemonicParsing="false" onAction="#actionMiOpenFile" text="Abrir">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="O" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <MenuItem fx:id="miSalveFile" mnemonicParsing="false" onAction="#actionMiSalveFile" text="Salvar">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="S" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="miSaveAsFile" mnemonicParsing="false" onAction="#actionMiSaveAsFile" text="Salvar como..." />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="MiExit" mnemonicParsing="false" onAction="#actionMiExit" text="Sair" />
+                        <MenuItem fx:id="MiExit" mnemonicParsing="false" onAction="#actionMiExit" text="Sair">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="X" control="ANY" meta="UP" shift="ANY" shortcut="UP" />
+                           </accelerator></MenuItem>
                   </items>
                 </Menu>
                 <Menu fx:id="mCompiler" mnemonicParsing="false" onAction="#actionMCompiler" text="Compilar" />
                 <Menu mnemonicParsing="false" text="Ajuda">
                   <items>
-                    <MenuItem fx:id="miDocumentation" mnemonicParsing="false" onAction="#actionMiDocumentation" text="Documentação" />
+                    <MenuItem fx:id="miDocumentation" mnemonicParsing="false" onAction="#actionMiDocumentation" text="Documentação">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="D" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="miAbout" mnemonicParsing="false" onAction="#actionMiAbout" text="Sobre" />
+                        <MenuItem fx:id="miAbout" mnemonicParsing="false" onAction="#actionMiAbout" text="Sobre">
+                           <accelerator>
+                              <KeyCodeCombination alt="ANY" code="S" control="UP" meta="UP" shift="ANY" shortcut="UP" />
+                           </accelerator></MenuItem>
                   </items>
                 </Menu>
               </menus>
