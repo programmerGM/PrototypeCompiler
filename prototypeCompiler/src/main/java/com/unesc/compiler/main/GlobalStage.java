@@ -56,7 +56,7 @@ public class GlobalStage {
         GlobalStage.stage = new Stage();
         Parent root = fxmlLoad;
         Scene scene = new Scene(root);
-        //scene.getStylesheets().add("/styles/Styles.css");
+        scene.getStylesheets().add("/styles/Styles.css");
         GlobalStage.stage.setScene(scene);
         GlobalStage.getStage().setTitle("Prototipo de compilador");
         GlobalStage.stage.show();

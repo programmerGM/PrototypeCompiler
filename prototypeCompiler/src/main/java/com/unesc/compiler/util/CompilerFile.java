@@ -7,8 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.control.Alert;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -29,11 +27,14 @@ public class CompilerFile {
      * @param text - Texto para salvar no arquivo.
      * @return File - Próprio arquivo.
      */
-    public File save(File file, String text) {
+    public File save(File file, String[] text) {
         if (file != null) {
             try (BufferedWriter fileWriter
                     = new BufferedWriter(new FileWriter(file))) {
-                fileWriter.write(text);
+                for (String string : text) {
+                    fileWriter.write(string);
+                    fileWriter.newLine();
+                }
             } catch (IOException ex) {
                 Util.showAlertAndWait(Alert.AlertType.ERROR, "Erro",
                         "Erro de arquivo", "Ocorreu um erro ao salvar o arquivo");
@@ -50,7 +51,7 @@ public class CompilerFile {
      * @param text - Texto a ser salvo no arquivo.
      * @return File - Retorna o arquivo salvo.
      */
-    public File saveAs(Stage stage, String text) {
+    public File saveAs(Stage stage, String[] text) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Salvar arquivo");
         fileChooser.getExtensionFilters().addAll(
@@ -74,21 +75,34 @@ public class CompilerFile {
         return file;
     }
 
+    /**
+     * Método para abrir um novo arquivo.
+     *
+     * @param file - Arquivo a ser aberto.
+     * @return String - Texto do arquivo.
+     */
     public String open(File file) {
-        StringBuilder text = new StringBuilder();
-        String line;
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-            while ((line = bufferedReader.readLine()) != null) {
-                text.append(line);
-                text.append('\n');
+        String name = file.getName();
+        if (name.endsWith(".cll") || name.endsWith(".txt")) {
+            StringBuilder text = new StringBuilder();
+            String line;
+            try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+                while ((line = bufferedReader.readLine()) != null) {
+                    text.append(line);
+                    text.append('\n');
+                }
+                return text.toString();
+            } catch (FileNotFoundException ex) {
+                Util.showAlertAndWait(Alert.AlertType.ERROR, "Erro",
+                        "Erro de arquivo", "Arquivo não encontrado");
+            } catch (IOException ex) {
+                Util.showAlertAndWait(Alert.AlertType.ERROR, "Erro",
+                        "Erro de arquivo", "Erro ao ler arquivo");
             }
-            return text.toString();
-        } catch (FileNotFoundException ex) {
-            Util.showAlertAndWait(Alert.AlertType.ERROR, "Erro",
-                    "Erro de arquivo", "Arquivo não encontrado");
-        } catch (IOException ex) {
-            Util.showAlertAndWait(Alert.AlertType.ERROR, "Erro",
-                    "Erro de arquivo", "Erro ao ler arquivo");
+        } else {
+            Util.showAlertAndWait(Alert.AlertType.INFORMATION, "Aviso",
+                    "Arquivo inválido",
+                    "O arquivo deve ser do tipo .cll ou .txt");
         }
         return null;
     }

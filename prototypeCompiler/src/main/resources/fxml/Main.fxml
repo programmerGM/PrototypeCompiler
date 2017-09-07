@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -9,6 +10,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
@@ -63,12 +66,18 @@
          <center>
             <AnchorPane BorderPane.alignment="CENTER">
                <children>
-                  <TextArea fx:id="textArea" layoutX="6.0" layoutY="6.0" prefHeight="481.0" prefWidth="1095.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0" />
+                  <TextArea fx:id="textArea" layoutX="6.0" layoutY="6.0" prefHeight="481.0" prefWidth="1095.0" promptText="Código" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="5.0" radius="2.0" width="5.0" />
+                     </effect></TextArea>
                </children>
             </AnchorPane>
          </center>
          <top>
-            <MenuBar BorderPane.alignment="CENTER">
+            <MenuBar style="-fx-background-radius: 0 9 9 9;" BorderPane.alignment="CENTER">
               <menus>
                 <Menu mnemonicParsing="false" text="Geral">
                   <items>
@@ -90,6 +99,9 @@
                   </items>
                 </Menu>
               </menus>
+               <effect>
+                  <Reflection bottomOpacity="0.14" fraction="0.12" topOpacity="0.13" />
+               </effect>
             </MenuBar>
          </top>
       </BorderPane>

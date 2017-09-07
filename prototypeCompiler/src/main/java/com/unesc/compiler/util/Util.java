@@ -6,20 +6,20 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
- * Classe utilitária
+ * Classe utilitária.
  *
  * @author Maurício Generoso
- * @version 1.0
+ * @since 05/07/2017
  */
 public class Util {
 
     /**
-     * Método para retornar o ícone do programa
+     * Método para retornar o ícone do programa.
      *
      * @return Icone
      */
     public Image getIcon() {
-        return new Image(getClass().getResourceAsStream("\\images\\icon.png"));
+        return new Image(getClass().getResourceAsStream("/icon.png"));
     }
 
     /**

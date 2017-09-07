@@ -83,7 +83,7 @@ public class MainController implements Initializable {
     @FXML
     private void actionMiSalveFile() {
         if (file != null) {
-            new CompilerFile().save(file, textArea.getText());
+            new CompilerFile().save(file, textArea.getText().split("\n"));
         } else {
             actionMiSaveAsFile();
         }
@@ -91,7 +91,7 @@ public class MainController implements Initializable {
 
     @FXML
     private void actionMiSaveAsFile() {
-        File temp = new CompilerFile().saveAs(GlobalStage.getStage(), textArea.getText());
+        File temp = new CompilerFile().saveAs(GlobalStage.getStage(), textArea.getText().split("\n"));
         if (temp != null) {
             file = temp;
         }
@@ -103,7 +103,7 @@ public class MainController implements Initializable {
      */
     @FXML
     private void actionMiExit() {
-        System.exit(-1);
+        System.exit(0);
     }
 
     /**
