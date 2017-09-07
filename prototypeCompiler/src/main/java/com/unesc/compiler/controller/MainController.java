@@ -39,6 +39,7 @@ public class MainController implements Initializable {
     @FXML
     private TextArea textArea;
     private File file;
+    private String text;
 
     /**
      * Método de inicialização da classe controller.
@@ -49,6 +50,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         file = null;
+        text = "";
     }
 
     /**
@@ -123,5 +125,5 @@ public class MainController implements Initializable {
     private void actionMiAbout() {
         System.out.println("");
     }
-
+    
 }
