@@ -2,12 +2,12 @@ package com.unesc.compiler.controller;
 
 import com.unesc.compiler.main.GlobalStage;
 import com.unesc.compiler.util.CompilerFile;
+import com.unesc.compiler.util.Util;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 
@@ -30,7 +30,7 @@ public class MainController implements Initializable {
     @FXML
     private MenuItem miExit;
     @FXML
-    private Menu mCompiler;
+    private MenuItem miCompiler;
     @FXML
     private MenuItem miDocumentation;
     @FXML
@@ -112,7 +112,7 @@ public class MainController implements Initializable {
      * Ação para o menu de compilar.
      */
     @FXML
-    private void actionMCompiler() {
+    private void actionMiCompiler() {
         System.out.println("Em construção.");
     }
 
@@ -121,9 +121,12 @@ public class MainController implements Initializable {
         System.out.println("Em construção.");
     }
 
+    /**
+     * Ação do menuItem sobre.
+     */
     @FXML
     private void actionMiAbout() {
-        System.out.println("");
+        new Util().callAbout();
     }
     
 }

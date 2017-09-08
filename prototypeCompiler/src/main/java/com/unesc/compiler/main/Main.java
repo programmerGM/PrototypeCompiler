@@ -1,6 +1,7 @@
 package com.unesc.compiler.main;
 
 import com.unesc.compiler.util.Util;
+import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +30,7 @@ public class Main extends Application {
         try {
             GlobalStage.loadNewStage((Parent) FXMLLoader.load(getClass().getResource("/fxml/Main.fxml")));
             //GlobalStage.getStage().getIcons().add(new Util().getIcon());
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             Util.showAlertAndWait(Alert.AlertType.ERROR, "ERRO",
                     "Erro na abertura da janela", "Ocorreu um erro na abertura"
                     + "da janela.\nO programa será finalizado.");
