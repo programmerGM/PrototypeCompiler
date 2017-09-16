@@ -1,7 +1,10 @@
 package com.unesc.compiler.controller;
 
 import com.unesc.compiler.main.GlobalStage;
+import com.unesc.compiler.object.Code;
+import com.unesc.compiler.object.Lexico;
 import com.unesc.compiler.util.CompilerFile;
+import com.unesc.compiler.util.RequestServer;
 import com.unesc.compiler.util.Util;
 import java.io.File;
 import java.net.URL;
@@ -113,7 +116,17 @@ public class MainController implements Initializable {
      */
     @FXML
     private void actionMiCompiler() {
-        System.out.println("Em construção.");
+        Lexico lexico = new RequestServer().compiler(textArea.getText());
+
+        if (!lexico.getMessageError().equals("")) { // Retornou erro
+
+        } else {
+            System.out.println("RETORNO");
+            System.out.println(lexico.getCode()[0]);
+            System.out.println(lexico.getLine()[0]);
+            System.out.println(lexico.getToken()[0]);
+        }
+        System.out.println("completou");
     }
 
     @FXML
@@ -128,5 +141,5 @@ public class MainController implements Initializable {
     private void actionMiAbout() {
         new Util().callAbout();
     }
-    
+
 }
