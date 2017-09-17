@@ -34,6 +34,7 @@ public class Main extends Application {
             Util.showAlertAndWait(Alert.AlertType.ERROR, "ERRO",
                     "Erro na abertura da janela", "Ocorreu um erro na abertura"
                     + "da janela.\nO programa será finalizado.");
+            ex.printStackTrace();
             System.exit(0);
         }
     }

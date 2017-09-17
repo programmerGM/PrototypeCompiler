@@ -1,54 +1,35 @@
 package com.unesc.compiler.object;
 
-import java.io.Serializable;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  * Classe com os dados do analisados léxico.
  *
  * @author Mauricio Generoso.
- * @since 07/09/2017
+ * @since 16/09/2017
  */
-public class Lexico implements Serializable {
+public class Lexico {
 
-    private int[] code;
-    private String[] token;
-    private int[] line;
-    private String messageError;
+    private final SimpleStringProperty line;
+    private final SimpleStringProperty token;
+    private final SimpleStringProperty code;
 
-    public Lexico() {
-        messageError = null;
+    public Lexico(String line, String token, String code) {
+        this.line = new SimpleStringProperty(line);
+        this.token = new SimpleStringProperty(token);
+        this.code = new SimpleStringProperty(code);
     }
 
-    public int[] getCode() {
-        return code;
+    public String getLine() {
+        return line.get();
     }
 
-    public void setCode(int[] code) {
-        this.code = code;
+    public String getToken() {
+        return token.get();
     }
 
-    public String[] getToken() {
-        return token;
-    }
-
-    public void setToken(String[] token) {
-        this.token = token;
-    }
-
-    public int[] getLine() {
-        return line;
-    }
-
-    public void setLine(int[] line) {
-        this.line = line;
-    }
-
-    public String getMessageError() {
-        return messageError;
-    }
-
-    public void setMessageError(String messageError) {
-        this.messageError = messageError;
+    public String getCode() {
+        return code.get();
     }
 
 }

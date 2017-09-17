@@ -28,11 +28,11 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView prefHeight="171.0" prefWidth="1107.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="tvAnalysis" prefHeight="171.0" prefWidth="1107.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="Código" />
-                                        <TableColumn prefWidth="75.0" text="Token" />
-                                          <TableColumn prefWidth="75.0" text="Linha" />
+                                        <TableColumn fx:id="columnLexicoLine" prefWidth="75.0" text="Linha" />
+                                        <TableColumn fx:id="columnLexicoToken" prefWidth="75.0" text="Token" />
+                                          <TableColumn fx:id="columnLexicoCode" prefWidth="75.0" text="Código" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -42,14 +42,14 @@
                               </AnchorPane>
                         </content>
                       </Tab>
-                      <Tab closable="false" text="Erros">
+                      <Tab fx:id="tabErrors" text="Erros">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TableView prefHeight="171.0" prefWidth="1107.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="tvErrors" editable="true" prefHeight="171.0" prefWidth="1107.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
-                                        <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Linha" />
-                                        <TableColumn editable="false" prefWidth="75.0" text="Descrição" />
+                                        <TableColumn fx:id="columnErrorLine" editable="false" prefWidth="75.0" sortable="false" text="Linha" />
+                                        <TableColumn fx:id="columnErrorMessage" editable="false" prefWidth="75.0" text="Descrição" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -1,7 +1,7 @@
 package com.unesc.compiler.util;
 
 import com.google.gson.Gson;
-import com.unesc.compiler.object.Lexico;
+import com.unesc.compiler.object.ResponseLexico;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import javafx.scene.control.Alert;
 
 /**
  * Classe para fazer a requisição ao servidor.
@@ -20,8 +21,8 @@ public class RequestServer {
 
     private final String REQUEST_URL = "http://localhost:3000/";
 
-    public Lexico compiler(final String code) {
-        Lexico lexico = null;
+    public ResponseLexico compiler(final String code) {
+        ResponseLexico responseLexico = null;
         try {
             HttpURLConnection con = (HttpURLConnection) new URL(REQUEST_URL).openConnection();
 
@@ -48,14 +49,19 @@ public class RequestServer {
             }
             in.close();
 
-            lexico = new Gson().fromJson(response.toString(), Lexico.class);
+            responseLexico = new Gson().fromJson(response.toString(), ResponseLexico.class);
         } catch (MalformedURLException ex) {
-            System.out.println("Erro na requisição");
+            error();
         } catch (IOException ex) {
-            System.out.println("erro na requisição 2");
+            error();
         }
-        System.out.println("completou");
-        return lexico;
+        return responseLexico;
+    }
+
+    private void error() {
+        Util.showAlertAndWait(Alert.AlertType.ERROR, "ERRO",
+                "Erro de comunicação", "Não foi possível compilar o código. "
+                + "Ocorreu um erro ao comunicar-se com o Servidor.");
     }
 
 }
