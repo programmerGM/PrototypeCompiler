@@ -17,6 +17,12 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
+    /**
+     * Método de inicialiação.
+     *
+     * @param primaryStage - Janela.
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         GlobalStage.getInstance(primaryStage);

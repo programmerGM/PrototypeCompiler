@@ -21,6 +21,12 @@ public class RequestServer {
 
     private final String REQUEST_URL = "http://localhost:3000/";
 
+    /**
+     * Faz requisição enviando o código o objeto o retorno.
+     *
+     * @param code - Código.
+     * @return ResponseLexico - Objeto com os dados do retorno.
+     */
     public ResponseLexico compiler(final String code) {
         ResponseLexico responseLexico = null;
         try {
@@ -58,6 +64,9 @@ public class RequestServer {
         return responseLexico;
     }
 
+    /**
+     * Para quando ocorrer erro mostrar uma janela de diálogo.
+     */
     private void error() {
         Util.showAlertAndWait(Alert.AlertType.ERROR, "ERRO",
                 "Erro de comunicação", "Não foi possível compilar o código. "

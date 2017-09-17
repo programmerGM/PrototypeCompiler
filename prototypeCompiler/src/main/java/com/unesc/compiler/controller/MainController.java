@@ -76,8 +76,10 @@ public class MainController implements Initializable {
     private File file;
     private String text;
 
-    private final ObservableList<Lexico> olLexico = FXCollections.observableArrayList();
-    private final ObservableList<Errors> olErrors = FXCollections.observableArrayList();
+    private final ObservableList<Lexico> olLexico = 
+            FXCollections.observableArrayList();
+    private final ObservableList<Errors> olErrors = 
+            FXCollections.observableArrayList();
 
     /**
      * Método de inicialização da classe controller.
@@ -174,7 +176,7 @@ public class MainController implements Initializable {
     private void actionMiCompiler() {
         ResponseLexico responseLexico = new RequestServer().compiler(textArea.getText());
 
-        if (responseLexico == null) { // ocorreu erro na requisição
+        if (responseLexico == null) { // ocorreu erro na requisição e o objeto retornou nulo da função
             return;
         }
 
@@ -186,7 +188,6 @@ public class MainController implements Initializable {
             olErrors.add(
                     new Errors(String.valueOf(responseLexico.getLine()[0]),
                             responseLexico.getMessageError()));
-
         } else {
             //Remove erros
             tabErrors.setStyle("-fx-background-color: #window;");
@@ -202,7 +203,6 @@ public class MainController implements Initializable {
                                 responseLexico.getToken()[i],
                                 String.valueOf(responseLexico.getCode()[i])));
             }
-
         }
     }
 
