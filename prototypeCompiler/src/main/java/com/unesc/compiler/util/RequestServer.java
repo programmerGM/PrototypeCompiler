@@ -1,7 +1,6 @@
 package com.unesc.compiler.util;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.unesc.compiler.object.ResponseLexico;
 import java.lang.reflect.Type;
@@ -45,7 +44,7 @@ public class RequestServer {
                 }.getType();
                 listResponse = new Gson().fromJson(response, type);
             }
-        } catch (JsonSyntaxException ex) {
+        } catch (Exception ex) {
             error();
         }
         return listResponse;
