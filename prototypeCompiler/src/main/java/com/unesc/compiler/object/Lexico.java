@@ -6,8 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
  * Classe com os dados do analisados léxico.
  *
  * @author Mauricio Generoso.
- * @since 16/09/2017
- * @since 18/09/2017
+ * @since 16/09/2017 
  */
 public class Lexico {
 

@@ -5,7 +5,6 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.unesc.compiler.object.ResponseLexico;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.HashSet;
 import javafx.scene.control.Alert;
 import org.javalite.http.Http;
@@ -32,28 +31,23 @@ public class RequestServer {
      * código.
      *
      * @param code - Código.
-     * @return
+     * @return HashSet - Hash com os objetos.
      */
     public HashSet<ResponseLexico> compiler(final String code) {
         HashSet<ResponseLexico> listResponse = null;
-        System.out.println("teste");
         try {
-            Post post = Http.post(REQUEST_URL)
-                    .header("Accept", ACCEPT)
+            Post post = Http.post(REQUEST_URL).header("Accept", ACCEPT)
                     .header("Content-Type", CONTENT_TYPE)
                     .params(TYPE_CLIENT, TYPE_CLIENT_CODE, PARAM_TEXTAREA, code);
-            System.out.println("teste");
             if (post.responseCode() == 200) {
                 String response = post.text();
                 Type type = new TypeToken<HashSet<ResponseLexico>>() {
                 }.getType();
                 listResponse = new Gson().fromJson(response, type);
             }
-            System.out.println("teste");
         } catch (JsonSyntaxException ex) {
             error();
         }
-
         return listResponse;
     }
 
