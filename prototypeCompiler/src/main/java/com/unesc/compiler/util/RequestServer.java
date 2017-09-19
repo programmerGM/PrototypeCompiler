@@ -1,67 +1,60 @@
 package com.unesc.compiler.util;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 import com.unesc.compiler.object.ResponseLexico;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashSet;
 import javafx.scene.control.Alert;
+import org.javalite.http.Http;
+import org.javalite.http.Post;
 
 /**
  * Classe para fazer a requisição ao servidor.
  *
  * @author Mauricio Gereroso
  * @since 16/09/2017
+ * @since 18/09/2017
  */
 public class RequestServer {
 
-    private final String REQUEST_URL = "http://localhost:3000/";
+    private final String REQUEST_URL = "http://localhost:80/validar";
+    private final String ACCEPT = "application/json";
+    private final String CONTENT_TYPE = "application/json";
+    private final String PARAM_TEXTAREA = "textarea";
+    private final String TYPE_CLIENT = "type-client";
+    private final String TYPE_CLIENT_CODE = "1";
 
     /**
-     * Faz requisição enviando o código o objeto o retorno.
+     * Método para realizar a requisição ao servidor para fazer as validações no
+     * código.
      *
      * @param code - Código.
-     * @return ResponseLexico - Objeto com os dados do retorno.
+     * @return
      */
-    public ResponseLexico compiler(final String code) {
-        ResponseLexico responseLexico = null;
+    public HashSet<ResponseLexico> compiler(final String code) {
+        HashSet<ResponseLexico> listResponse = null;
+        System.out.println("teste");
         try {
-            HttpURLConnection con = (HttpURLConnection) new URL(REQUEST_URL).openConnection();
-
-            con.setRequestMethod("POST");
-
-            // Send post request
-            con.setDoOutput(true);
-            DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-            wr.writeBytes("teste parametro");
-            wr.flush();
-            wr.close();
-
-            int responseCode = con.getResponseCode();
-            System.out.println("\nSending 'POST' request to URL : " + REQUEST_URL);
-            System.out.println("Post parameters : " + "teste parametro");
-            System.out.println("Response Code : " + responseCode);
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+            Post post = Http.post(REQUEST_URL)
+                    .header("Accept", ACCEPT)
+                    .header("Content-Type", CONTENT_TYPE)
+                    .params(TYPE_CLIENT, TYPE_CLIENT_CODE, PARAM_TEXTAREA, code);
+            System.out.println("teste");
+            if (post.responseCode() == 200) {
+                String response = post.text();
+                Type type = new TypeToken<HashSet<ResponseLexico>>() {
+                }.getType();
+                listResponse = new Gson().fromJson(response, type);
             }
-            in.close();
-
-            responseLexico = new Gson().fromJson(response.toString(), ResponseLexico.class);
-        } catch (MalformedURLException ex) {
-            error();
-        } catch (IOException ex) {
+            System.out.println("teste");
+        } catch (JsonSyntaxException ex) {
             error();
         }
-        return responseLexico;
+
+        return listResponse;
     }
 
     /**

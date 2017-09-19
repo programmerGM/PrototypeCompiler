@@ -10,9 +10,9 @@ import java.io.Serializable;
  */
 public class ResponseLexico implements Serializable {
 
-    private int[] code;
-    private String[] token;
-    private int[] line;
+    private int code;
+    private String token;
+    private int line;
     private String messageError;
 
     /**
@@ -23,56 +23,56 @@ public class ResponseLexico implements Serializable {
     }
 
     /**
-     * Retorna um array com os códigos.
+     * Retorna o código.
      *
-     * @return int[] - Array com os códigos.
+     * @return int - Array com os códigos.
      */
-    public int[] getCode() {
+    public int getCode() {
         return code;
     }
 
     /**
-     * Insere um array com os códigos.
+     * Insere um código.
      *
-     * @param code - Array a ser inserido.
+     * @param code - Código a ser inserido.
      */
-    public void setCode(int[] code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
     /**
-     * Retorna um array com os tokens.
+     * Retorna o token.
      *
-     * @return - String[] - Array com os tokens.
+     * @return - String - Token.
      */
-    public String[] getToken() {
+    public String getToken() {
         return token;
     }
 
     /**
-     * Insere um array com os tokens.
+     * Insere o token.
      *
-     * @param token String[] - Array a ser inserido.
+     * @param token String - Token a ser inserido.
      */
-    public void setToken(String[] token) {
+    public void setToken(String token) {
         this.token = token;
     }
 
     /**
-     * Retorna um array com as linhas.
+     * Retorna a linha.
      *
-     * @return int[] - Array cmo as linhas.
+     * @return int - Linha.
      */
-    public int[] getLine() {
+    public int getLine() {
         return line;
     }
 
     /**
-     * Insere um array com as linhas.
+     * Insere a linha.
      *
-     * @param line String[] - Array a ser inserido.
+     * @param line String - Linha a ser inserida.
      */
-    public void setLine(int[] line) {
+    public void setLine(int line) {
         this.line = line;
     }
 
@@ -92,16 +92,6 @@ public class ResponseLexico implements Serializable {
      */
     public void setMessageError(String messageError) {
         this.messageError = messageError;
-    }
-
-    /**
-     * toString().
-     *
-     * @return String.
-     */
-    @Override
-    public String toString() {
-        return "ResponseLexico{" + "code=" + code + ", token=" + token + ", line=" + line + ", messageError=" + messageError + '}';
     }
 
 }

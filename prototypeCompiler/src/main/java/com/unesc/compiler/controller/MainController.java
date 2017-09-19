@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,6 +33,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @author Mauricio Generoso
  * @since 04/09/2017
  * @since 16/09/2017
+ * @since 18/09/2017
  */
 public class MainController implements Initializable {
 
@@ -76,10 +78,10 @@ public class MainController implements Initializable {
     private File file;
     private String text;
 
-    private final ObservableList<Lexico> olLexico = 
-            FXCollections.observableArrayList();
-    private final ObservableList<Errors> olErrors = 
-            FXCollections.observableArrayList();
+    private final ObservableList<Lexico> olLexico
+            = FXCollections.observableArrayList();
+    private final ObservableList<Errors> olErrors
+            = FXCollections.observableArrayList();
 
     /**
      * Método de inicialização da classe controller.
@@ -96,18 +98,18 @@ public class MainController implements Initializable {
 
         /*Configura a tabela do lexico*/
         this.columnLexicoLine.setCellValueFactory(
-                new PropertyValueFactory<Lexico, String>("line"));
+                new PropertyValueFactory<>("line"));
         this.columnLexicoToken.setCellValueFactory(
-                new PropertyValueFactory<Lexico, String>("token"));
+                new PropertyValueFactory<>("token"));
         this.columnLexicoCode.setCellValueFactory(
-                new PropertyValueFactory<Lexico, String>("code"));
+                new PropertyValueFactory<>("code"));
         this.tvAnalysis.setItems(olLexico);
 
         /*Configura a tabela de erros*/
         this.columnErrorLine.setCellValueFactory(
-                new PropertyValueFactory<Errors, String>("line"));
+                new PropertyValueFactory<>("line"));
         this.columnErrorMessage.setCellValueFactory(
-                new PropertyValueFactory<Errors, String>("message"));
+                new PropertyValueFactory<>("message"));
         this.tvErrors.setItems(olErrors);
     }
 
@@ -174,36 +176,29 @@ public class MainController implements Initializable {
      */
     @FXML
     private void actionMiCompiler() {
-        ResponseLexico responseLexico = new RequestServer().compiler(textArea.getText());
+        HashSet<ResponseLexico> responseLexico = new RequestServer().compiler(textArea.getText());
 
         if (responseLexico == null) { // ocorreu erro na requisição e o objeto retornou nulo da função
             return;
         }
+        // Limpa tudo
+        tabErrors.setStyle("-fx-background-color: #window;");
+        olErrors.clear();
+        olLexico.clear();
 
-        if (!responseLexico.getMessageError().equals("")) { // Retornou erro no código
-            tabErrors.setStyle("-fx-background-color: #d16060;");
-            tabErrors.getStyleClass().add("error-collor");
-            olErrors.clear();
-            olLexico.clear();
-            olErrors.add(
-                    new Errors(String.valueOf(responseLexico.getLine()[0]),
-                            responseLexico.getMessageError()));
-        } else {
-            //Remove erros
-            tabErrors.setStyle("-fx-background-color: #window;");
-            olErrors.clear();
-            olLexico.clear();
-
-            System.out.println("linha: " + responseLexico.getLine()[0]);
-            System.out.println("codigo: " + responseLexico.getCode()[0]);
-            
-            for (int i = 0; i < responseLexico.getCode().length; i++) {
+        responseLexico.forEach(list -> {
+            if (list.getMessageError() != null) { // Há erro
+                tabErrors.setStyle("-fx-background-color: #d16060;");
+                olErrors.add(new Errors(String.valueOf(list.getLine()),
+                        list.getMessageError()));
+            } else {
+                // Adiciona tokens
                 olLexico.add(
-                        new Lexico(String.valueOf(responseLexico.getLine()[i]),
-                                responseLexico.getToken()[i],
-                                String.valueOf(responseLexico.getCode()[i])));
+                        new Lexico(String.valueOf(list.getLine()),
+                                list.getToken(),
+                                String.valueOf(list.getCode())));
             }
-        }
+        });
     }
 
     /**

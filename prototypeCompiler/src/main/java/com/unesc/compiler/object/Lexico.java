@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
  *
  * @author Mauricio Generoso.
  * @since 16/09/2017
+ * @since 18/09/2017
  */
 public class Lexico {
 
