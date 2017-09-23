@@ -15,6 +15,7 @@ import org.javalite.http.Post;
  * @author Mauricio Gereroso
  * @since 16/09/2017
  * @since 18/09/2017
+ * @since 23/09/2017
  */
 public class RequestServer {
 
@@ -22,7 +23,7 @@ public class RequestServer {
     private final String ACCEPT = "application/json";
     private final String CONTENT_TYPE = "application/json";
     private final String PARAM_TEXTAREA = "textarea";
-    private final String TYPE_CLIENT = "type-client";
+    private final String TYPE_CLIENT = "typeclient";
     private final String TYPE_CLIENT_CODE = "1";
 
     /**
@@ -43,8 +44,14 @@ public class RequestServer {
                 Type type = new TypeToken<HashSet<ResponseLexico>>() {
                 }.getType();
                 listResponse = new Gson().fromJson(response, type);
+                listResponse.forEach(l -> {
+                    if (l.getCode() != 44) {
+                        l.setLine(l.getLine() + 1);
+                    }
+                });
             }
         } catch (Exception ex) {
+            System.out.println("Erro: " + ex.getMessage());
             error();
         }
         return listResponse;
