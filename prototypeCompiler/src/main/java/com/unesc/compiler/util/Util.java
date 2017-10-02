@@ -1,7 +1,6 @@
 package com.unesc.compiler.util;
 
 import com.unesc.compiler.main.GlobalStage;
-import java.io.File;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,8 +20,10 @@ import javafx.stage.Stage;
 public class Util {
 
     private final String URL_ICON_1 = "https://image.flaticon.com/teams/slug/freepik.jpg";
-    private final String URL_ICON_2 = "https://github.com/programmerGM/prototypeCompiler/blob/master/prototypeCompiler/src/main/java/com/unesc/compiler/util/images/icon.png";
+    private final String URL_ICON_2 = "https://image.flaticon.com/teams/slug/freepik.jpg";
     private final String URL_ICON_3 = "https://image.flaticon.com/teams/slug/freepik.jpg";
+
+    private static Stage about;
 
     /**
      * Método para retornar o ícone do programa.
@@ -30,7 +31,7 @@ public class Util {
      * @return Icone
      */
     public Image getIcon() {
-        return new Image(URL_ICON_2);
+        return new Image(URL_ICON_1);
     }
 
     /**
@@ -38,12 +39,12 @@ public class Util {
      */
     public void callAbout() {
         try {
-            Stage about = new Stage();
+            about = new Stage();
             Scene scene = new Scene((Parent) FXMLLoader.load(getClass().getResource("/fxml/About.fxml")));
             about.setScene(scene);
             about.setTitle("Sobre");
-            //about.initModality(Modality.WINDOW_MODAL); Não funfa
             GlobalStage.getStage().hide();
+            about.getIcons().add(new Util().getIcon());
             about.show();
         } catch (IOException ex) {
             showAlertAndWait(Alert.AlertType.ERROR, "ERRO",
@@ -52,6 +53,10 @@ public class Util {
         }
     }
 
+    public void closeAbout(){
+        about.close();
+    }
+    
     /**
      * Método para demonstrar alerta em tela e aguardar
      *
