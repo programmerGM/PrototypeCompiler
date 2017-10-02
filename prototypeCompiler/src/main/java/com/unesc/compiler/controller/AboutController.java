@@ -14,11 +14,17 @@ import javafx.scene.image.ImageView;
  */
 public class AboutController implements Initializable {
 
+    private final String URL_PROJECT_DESKTOP = "https://github.com/programmerGM/prototypeCompiler";
+    private final String URL_PROJECT_SERVER = "https://github.com/programmerGM/prototypeCompilerServer";
+
     @FXML
     private ImageView image;
 
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

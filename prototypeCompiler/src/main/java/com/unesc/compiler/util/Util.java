@@ -1,6 +1,7 @@
 package com.unesc.compiler.util;
 
 import com.unesc.compiler.main.GlobalStage;
+import java.io.File;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,9 +15,14 @@ import javafx.stage.Stage;
  * Classe utilitária.
  *
  * @author Maurício Generoso
- * @since 05/07/2017
+ * @since 05/09/2017
+ * @since 01/10/2017
  */
 public class Util {
+
+    private final String URL_ICON_1 = "https://image.flaticon.com/teams/slug/freepik.jpg";
+    private final String URL_ICON_2 = "https://github.com/programmerGM/prototypeCompiler/blob/master/prototypeCompiler/src/main/java/com/unesc/compiler/util/images/icon.png";
+    private final String URL_ICON_3 = "https://image.flaticon.com/teams/slug/freepik.jpg";
 
     /**
      * Método para retornar o ícone do programa.
@@ -24,7 +30,7 @@ public class Util {
      * @return Icone
      */
     public Image getIcon() {
-        return new Image(getClass().getResourceAsStream("/icon.png"));
+        return new Image(URL_ICON_2);
     }
 
     /**

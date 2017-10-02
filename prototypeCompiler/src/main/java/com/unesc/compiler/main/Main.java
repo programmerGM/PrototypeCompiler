@@ -35,7 +35,7 @@ public class Main extends Application {
     private void initLayout() {
         try {
             GlobalStage.loadNewStage((Parent) FXMLLoader.load(getClass().getResource("/fxml/Main.fxml")));
-            //GlobalStage.getStage().getIcons().add(new Util().getIcon());
+            GlobalStage.getStage().getIcons().add(new Util().getIcon());
         } catch (IOException ex) {
             Util.showAlertAndWait(Alert.AlertType.ERROR, "ERRO",
                     "Erro na abertura da janela", "Ocorreu um erro na abertura"

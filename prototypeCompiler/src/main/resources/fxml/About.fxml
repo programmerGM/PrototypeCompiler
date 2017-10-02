@@ -8,14 +8,14 @@
 
 <AnchorPane id="AnchorPane" focusTraversable="true" prefHeight="291.0" prefWidth="583.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unesc.compiler.controller.AboutController">
    <children>
-      <Pane layoutX="8.0" layoutY="6.0" prefHeight="278.0" prefWidth="567.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-border-radius: 10;" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="6.0">
+      <Pane layoutX="7.0" layoutY="7.0" prefHeight="278.0" prefWidth="569.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-border-radius: 10;" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="7.0">
          <effect>
             <DropShadow height="5.0" radius="2.0" width="5.0" />
          </effect>
          <children>
-            <ImageView fitHeight="91.0" fitWidth="135.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../java/com/unesc/compiler/util/images/unesc.png" />
+                  <Image url="http://www.portalriomaina.com.br/image/c3JjPWltYWdlbnMvbm90aWNpYXMvbm90aWNpYV8yMTE2LmpwZyZzZWN1cmU9e2J1cm59.jpg" />
                </image>
             </ImageView>
          </children>

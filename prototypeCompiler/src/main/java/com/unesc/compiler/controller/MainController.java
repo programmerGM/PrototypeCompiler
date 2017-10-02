@@ -35,10 +35,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @since 16/09/2017
  * @since 18/09/2017
  * @since 23/09/2017
+ * @since 01/10/2017
  */
 public class MainController implements Initializable {
 
-    private final String URL_DOCUMENTATION_GITHUB = "https://github.com/programmerGM/prototypeCompiler";
+    private final String URL_DOCUMENTATION_GITHUB = "https://programmergm.github.io/prototypeCompiler/";
 
     @FXML
     private MenuItem miNewFile;
