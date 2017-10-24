@@ -1,20 +1,25 @@
 package com.unesc.compiler.controller;
 
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import com.unesc.compiler.main.GlobalStage;
 import com.unesc.compiler.object.Errors;
 import com.unesc.compiler.object.Lexico;
 import com.unesc.compiler.object.ResponseLexico;
+import com.unesc.compiler.object.ResponseSintatico;
 import com.unesc.compiler.util.CompilerFile;
 import com.unesc.compiler.util.RequestServer;
 import com.unesc.compiler.util.Util;
+import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.HashSet;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,10 +27,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 
 /**
  * Controle da janela principal.
@@ -68,6 +76,10 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<Lexico, String> columnLexicoCode;
     @FXML
+    private TableView<ResponseSintatico> tvStack;
+    @FXML
+    private TableColumn<ResponseSintatico, String> columnSintaticoStack;
+    @FXML
     private Tab tabErrors;
     @FXML
     private TableView<Errors> tvErrors;
@@ -83,6 +95,8 @@ public class MainController implements Initializable {
     private final ObservableList<Lexico> olLexico
             = FXCollections.observableArrayList();
     private final ObservableList<Errors> olErrors
+            = FXCollections.observableArrayList();
+    private final ObservableList<ResponseSintatico> olStack
             = FXCollections.observableArrayList();
 
     /**
@@ -113,6 +127,11 @@ public class MainController implements Initializable {
         this.columnErrorMessage.setCellValueFactory(
                 new PropertyValueFactory<>("message"));
         this.tvErrors.setItems(olErrors);
+
+        /*Configura a pilha*/
+        this.columnSintaticoStack.setCellValueFactory(
+                new PropertyValueFactory<>("code"));
+        this.tvStack.setItems(olStack);
     }
 
     /**
@@ -178,7 +197,7 @@ public class MainController implements Initializable {
      */
     @FXML
     private void actionMiCompiler() {
-        HashSet<ResponseLexico> responseLexico = new RequestServer().compiler(textArea.getText());
+        List<ResponseLexico> responseLexico = new RequestServer().compilerLexico(textArea.getText());
 
         if (responseLexico == null) { // ocorreu erro na requisição e o objeto retornou nulo da função
             return;
@@ -187,6 +206,7 @@ public class MainController implements Initializable {
         tabErrors.setStyle("-fx-background-color: #window;");
         olErrors.clear();
         olLexico.clear();
+        olStack.clear();
 
         responseLexico.forEach(list -> {
             if (list.getMessageError() != null) { // Há erro
@@ -201,6 +221,34 @@ public class MainController implements Initializable {
                                 String.valueOf(list.getCode())));
             }
         });
+
+        if (olErrors.isEmpty()) {
+            List<ResponseSintatico> sintatico = new RequestServer().compilerSintatico(responseLexico);
+
+            new Thread(() -> {
+                sintatico.forEach(s -> {
+                    if (s.isAdd()) {
+                        System.out.println("Adicionou o " + s.getCode());
+                        olStack.add(0, new ResponseSintatico(s.getCode()));
+                    } else {
+                        System.out.println("Removeu o " + s.getCode());
+                        olStack.remove(0);
+                    }
+                    try {
+                        System.out.println("esperando");
+                        Thread.sleep(2500l);
+                        System.out.println("próximo");
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+
+                if (olStack.size() > 1) {
+                    olStack.add(0, new ResponseSintatico(-9999999));
+                }
+            }).start();
+        }
+
     }
 
     /**

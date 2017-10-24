@@ -67,7 +67,7 @@
          <center>
             <AnchorPane BorderPane.alignment="CENTER">
                <children>
-                  <TextArea fx:id="textArea" layoutX="6.0" layoutY="6.0" prefHeight="481.0" prefWidth="1095.0" promptText="Código" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0">
+                  <TextArea fx:id="textArea" layoutX="6.0" layoutY="6.0" prefHeight="265.0" prefWidth="783.0" promptText="Código" wrapText="true" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="6.0">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>
@@ -130,6 +130,17 @@
                </effect>
             </MenuBar>
          </top>
+         <right>
+            <AnchorPane prefHeight="275.0" prefWidth="111.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tvStack" layoutX="5.0" layoutY="6.0" prefHeight="266.0" prefWidth="102.0" style="-fx-border-radius: 0 0 9 9; -fx-background-radius: 0 0 9 9;">
+                    <columns>
+                      <TableColumn fx:id="columnSintaticoStack" editable="false" prefWidth="100.0" resizable="false" sortable="false" text="Pilha" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </right>
       </BorderPane>
    </children>
 </AnchorPane>

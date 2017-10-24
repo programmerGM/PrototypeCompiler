@@ -34,6 +34,7 @@ public class Main extends Application {
      */
     private void initLayout() {
         try {
+            System.out.println(getClass().getResource("/fxml/Main.fxml"));
             GlobalStage.loadNewStage((Parent) FXMLLoader.load(getClass().getResource("/fxml/Main.fxml")));
             GlobalStage.getStage().getIcons().add(new Util().getIcon());
         } catch (IOException ex) {
