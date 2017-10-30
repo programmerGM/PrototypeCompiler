@@ -1,6 +1,5 @@
 package com.unesc.compiler.controller;
 
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import com.unesc.compiler.main.GlobalStage;
 import com.unesc.compiler.object.Errors;
 import com.unesc.compiler.object.Lexico;
@@ -9,7 +8,6 @@ import com.unesc.compiler.object.ResponseSintatico;
 import com.unesc.compiler.util.CompilerFile;
 import com.unesc.compiler.util.RequestServer;
 import com.unesc.compiler.util.Util;
-import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -27,13 +25,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 
 /**
  * Controle da janela principal.
@@ -236,7 +231,7 @@ public class MainController implements Initializable {
                     }
                     try {
                         System.out.println("esperando");
-                        Thread.sleep(2500l);
+                        Thread.sleep(1000l);
                         System.out.println("próximo");
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
