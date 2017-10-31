@@ -226,12 +226,14 @@ public class MainController implements Initializable {
                         System.out.println("Adicionou o " + s.getCode());
                         olStack.add(0, new ResponseSintatico(s.getCode()));
                     } else {
-                        System.out.println("Removeu o " + s.getCode());
-                        olStack.remove(0);
+                        if (s.getCode() != 44) {
+                            System.out.println("Removeu o " + s.getCode());
+                            olStack.remove(0);
+                        }
                     }
                     try {
                         System.out.println("esperando");
-                        Thread.sleep(1000l);
+                        Thread.sleep(1500l);
                         System.out.println("próximo");
                     } catch (InterruptedException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
