@@ -3,7 +3,7 @@
 
 Protótipo de um editor/compilador para uma linguagem de programação. Repositório com aplicação cliente(editor) em JavaFX e as lógicas são executadas em um <a href="https://github.com/programmerGM/prototypeCompilerServer">servidor em node.js.</a>
 
-* [Documentação](https://programmergm.github.io/prototypeCompiler/)
+* [Documentação da gramática](https://drive.google.com/open?id=1CnKkQoGPa3ZNdQvoOSotZuU8gVtbbJGJ)
 
 * <h5>Tecnologias e conceitos utilizados e estudados</h5>
   - JavaFx; <br />
