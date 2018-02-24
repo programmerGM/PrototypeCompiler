@@ -1,10 +1,12 @@
-* University project
+## Trabalho universitário - Compiladores
+<h6>Graduação - 6ª fase - 2017/2</h6>
 
-Protótipo de um editor/compilador para uma linguagem de programação. Repositório com aplicação cliente(editor) em JavaFX. As lógicas são executadas em um servidor em node.js.
-
-[Aplicação criada em forma de Cliente/Servidor com objetivos de estudos] <br>
-Servidor no repositório: https://github.com/programmerGM/prototypeCompilerServer
+Protótipo de um editor/compilador para uma linguagem de programação. Repositório com aplicação cliente(editor) em JavaFX e as lógicas são executadas em um <a href="https://github.com/programmerGM/prototypeCompilerServer">servidor em node.js.</a>
 
 * [Documentação](https://programmergm.github.io/prototypeCompiler/)
 
-@author: [Maurício Generoso](https://github.com/programmerGM) <br>
+* <h5>Tecnologias e conceitos utilizados e estudados</h5>
+  - JavaFx; <br />
+  - Comunicação cliente/servidor; <br />
+  - API Gson; <br />
+  - Singleton.
